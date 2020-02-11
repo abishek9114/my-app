@@ -14,6 +14,14 @@ node{
   Abhishek
   ''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job Status', to: 'aws2020.study@gmail.com'
   }
+  stage('Slack-Notification){
+        slackSend baseUrl: 'https://hooks.slack.com/services/', 
+        channel: '#jenkins-pipeline-practice', 
+        color: 'good', 
+        message: 'Job Creation Status', 
+        tokenCredentialId: 'slack-demo'
+        
+        }
 
 
 }
