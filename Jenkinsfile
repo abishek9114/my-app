@@ -7,7 +7,13 @@ node{
     def mvnHome = tool name: 'maven-plugin', type: 'maven'
     sh "${mvnHome}/bin/mvn package"
   }
-
+  stage('Email-Notification'){
+  mail bcc: '', body: '''Hi, 
+  This is to inform you that a jenkins job has been completed. Please check the status in the console.
+  Regards
+  Abhishek
+  ''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job Status', to: 'aws2020.study@gmail.com'
+  }
 
 
 }
