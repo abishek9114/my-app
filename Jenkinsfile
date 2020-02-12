@@ -7,6 +7,13 @@ node{
     def mvnHome = tool name: 'maven-plugin', type: 'maven'
     sh "${mvnHome}/bin/mvn package"
   }
+  
+  stage('Deploy War on Tomcat'){
+    sshagent(['tomcat-env']) {
+      sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@35.154.143.68:/opt/tomcat/webapps/'
+}
+  
+  }
   stage('Email-Notification'){
   mail bcc: '', body: '''Hi, 
   This is to inform you that a jenkins job has been completed. Please check the status in the console.
